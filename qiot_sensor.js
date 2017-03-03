@@ -138,10 +138,7 @@ function getresourceinfo(fileName) {
                 var resourcedetail = data.resources;
                 sensorslength = Object.keys(data.resources).length;
                 for (var resourceidx in resourcedetail) {
-                    var jsonobj = {
-                    				topic: resourcedetail[resourceidx].topic,
-                    				resourcetypename: resourcedetail[resourceidx].resourcetypename
-                    };
+                    var jsonobj = {topic: resourcedetail[resourceidx].topic};
                     resourceinfo.push(jsonobj);
                 }
                 defer.resolve(resourceinfo);
@@ -156,7 +153,6 @@ var sensor = {
         {
             for (var sensoridx in sensors) {
                 var topic_Pub = sensors[sensoridx].topic;
-                var restype = sensors[sensoridx].resourcetypename;
                 //var temperature = 0;
                 var qiot_value = 0;
 
@@ -168,10 +164,10 @@ var sensor = {
                 //     temperature = getRandomInt(0,50);
                 // }
                 //temperature = getRandomInt(0,50);
-                if (restype == "Temperature"){
+                if (topic_Pub == "qiot/things/admin/linkit/tmp_test"){
                 	qiot_value = temperature_mcu;
                 }
-                else if (restype == "Humidity") {
+                else if (topic_Pub == "qiot/things/admin/linkit/hum_test") {
                 	qiot_value = humidity_mcu;
                 }
                 else{
