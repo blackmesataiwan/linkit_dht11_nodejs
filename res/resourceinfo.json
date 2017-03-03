@@ -26,8 +26,5 @@
             "description": "",
             "topic": "qiot/things/admin/linkit/hum_test"
         }
-    ],
-    "caCert": "/v1/media/ca-crt.pem",
-    "clientCert": "/v1/media/2738072017-03-02_09-48-05/2738072017-03-02_09-48-05_certificate.pem",
-    "privateCert": "/v1/media/2738072017-03-02_09-48-05/2738072017-03-02_09-48-05_privatekey.pem"
+    ]
 }

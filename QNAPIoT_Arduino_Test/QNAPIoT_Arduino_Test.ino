@@ -46,8 +46,10 @@ void loop() {
         StaticJsonBuffer<200> jsonBuffer;
         
         JsonObject& root = jsonBuffer.createObject();
-        root["temperature"] = String(t);
-        root["humidity"] = String(h);
+        //root["temperature"] = String(t);
+        //root["humidity"] = String(h);
+        root["temperature"] = "22";
+        root["humidity"] = "19";
 
         root.printTo(Serial1);
         root.prettyPrintTo(Serial);
