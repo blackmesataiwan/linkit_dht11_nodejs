@@ -170,9 +170,13 @@ var sensor = {
                 //temperature = getRandomInt(0,50);
                 if (restype == "Temperature"){
                 	qiot_value = temperature_mcu;
+                	console.log("tmp:" + temperature_mcu +"\n");
+                	console.log("restype:" + restype +"\n");
                 }
                 else if (restype == "Humidity") {
                 	qiot_value = humidity_mcu;
+                	console.log("hum:" + humidity_mcu +"\n");
+                	console.log("restype:" + restype +"\n");
                 }
                 else{
                 	qiot_value = 0;
