@@ -1,30 +1,30 @@
 {
+    "username": "af1e274a-a6d6-483e-939a-922c4962bc60",
+    "myqnapcloudHost": "",
+    "clientId": "linkit2_1488778722",
     "host": [
         "172.17.30.19"
     ],
-    "myqnapcloudHost": "",
-    "port": 8883,
-    "clientId": "linkit",
-    "username": "dbde6b7b-dbb6-4315-b8b7-ff06605c1389",
-    "password": "r:1b7b4fab9c9aa8c4e7381212972f02a1",
+    "password": "r:eedb5db6bb6ae36eff69f448915e3202",
+    "port": 1883,
     "resources": [
         {
-            "resourcename": "tmp_test",
-            "resourceid": "tmp_test",
-            "resourcetypename": "Temperature",
-            "datatype": "Float",
-            "unit": "°C",
             "description": "",
-            "topic": "qiot/things/admin/linkit/tmp_test"
+            "datatype": "Float",
+            "resourceid": "tmproom1",
+            "topic": "qiot/things/admin/linkit2/tmproom1",
+            "resourcename": "tmp_room1",
+            "resourcetypename": "Temperature",
+            "unit": "°C"
         },
         {
-            "resourcename": "hum_test",
-            "resourceid": "hum_test",
-            "resourcetypename": "Humidity",
-            "datatype": "Float",
-            "unit": null,
             "description": "",
-            "topic": "qiot/things/admin/linkit/hum_test"
+            "datatype": "Float",
+            "resourceid": "hum",
+            "topic": "qiot/things/admin/linkit2/hum",
+            "resourcename": "hum_room1",
+            "resourcetypename": "Humidity",
+            "unit": null
         }
     ]
 }

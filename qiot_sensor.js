@@ -200,7 +200,7 @@ function addsensors(resourcesinfo) {
         if( i == 0)
         {
             //real
-            var jsonobj = {name: 'Rajah-RPI-DHT11-1-Office', type: 11, pin: 4,topic: resourcesinfo[i].topic, restype: resourcesinfo[i].restype};
+            var jsonobj = {name: 'MediaTek-linkit7688due-DHT11-1-Office', type: 11, pin: 4,topic: resourcesinfo[i].topic, restype: resourcesinfo[i].restype};
             sensors.push(jsonobj);
         }
         else
