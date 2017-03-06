@@ -13,6 +13,8 @@ var fakevalue = 0;
 var temperature_mcu = 0;
 var humidity_mcu = 0;
 
+//var restype = "no";
+
 //linkit to contral mcu
 var comport = require("serialport");
 
@@ -22,13 +24,12 @@ var serialPort = new comport.SerialPort("/dev/ttyS0", {
   });
 
 serialPort.on('open',function() {
-  console.log('Port open...');
+  	console.log('Port open...');
 });
 
 serialPort.on('data', function(data) {
 
     var comjson = JSON.parse(data);
-
 
     temperature_mcu = comjson.temperature;
     humidity_mcu = comjson.humidity;  
@@ -138,10 +139,7 @@ function getresourceinfo(fileName) {
                 var resourcedetail = data.resources;
                 sensorslength = Object.keys(data.resources).length;
                 for (var resourceidx in resourcedetail) {
-                    var jsonobj = {
-                    				topic: resourcedetail[resourceidx].topic,
-                    				resourcetypename: resourcedetail[resourceidx].resourcetypename
-                    };
+                    var jsonobj = {topic: resourcedetail[resourceidx].topic, restype: resourcedetail[resourceidx].resourcetypename};
                     resourceinfo.push(jsonobj);
                 }
                 defer.resolve(resourceinfo);
@@ -156,7 +154,7 @@ var sensor = {
         {
             for (var sensoridx in sensors) {
                 var topic_Pub = sensors[sensoridx].topic;
-                var restype = sensors[sensoridx].resourcetypename;
+                var restype_name = sensors[sensoridx].restype;
                 //var temperature = 0;
                 var qiot_value = 0;
 
@@ -168,18 +166,14 @@ var sensor = {
                 //     temperature = getRandomInt(0,50);
                 // }
                 //temperature = getRandomInt(0,50);
-                if (restype == "Temperature"){
+                if (restype_name == "Temperature"){
                 	qiot_value = temperature_mcu;
-                	console.log("tmp:" + temperature_mcu +"\n");
-                	console.log("restype:" + restype +"\n");
                 }
-                else if (restype == "Humidity") {
+                else if (restype_name == "Humidity") {
                 	qiot_value = humidity_mcu;
-                	console.log("hum:" + humidity_mcu +"\n");
-                	console.log("restype:" + restype +"\n");
                 }
                 else{
-                	qiot_value = 0;
+                	qiot_value = "undefined";
                 }
                 //console.log(temperature_s);
                 Qclient.publish(topic_Pub, JSON.stringify({value: qiot_value}),  {retain:true});
@@ -206,13 +200,13 @@ function addsensors(resourcesinfo) {
         if( i == 0)
         {
             //real
-            var jsonobj = {name: 'Rajah-RPI-DHT11-1-Office', type: 11, pin: 4,topic: resourcesinfo[i].topic};
+            var jsonobj = {name: 'Rajah-RPI-DHT11-1-Office', type: 11, pin: 4,topic: resourcesinfo[i].topic, restype: resourcesinfo[i].restype};
             sensors.push(jsonobj);
         }
         else
         {
             //fake
-            var jsonobj = {name: 'Fake' + i.toString(), type: 22, pin: -1, topic: resourcesinfo[i].topic};
+            var jsonobj = {name: 'Fake' + i.toString(), type: 22, pin: -1, topic: resourcesinfo[i].topic, restype: resourcesinfo[i].restype};
             sensors.push(jsonobj);
         }
     }
