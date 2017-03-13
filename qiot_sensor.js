@@ -28,11 +28,16 @@ serialPort.on('open',function() {
 });
 
 serialPort.on('data', function(data) {
+	try{
+		var comjson = JSON.parse(data);
 
-    var comjson = JSON.parse(data);
-
-    temperature_mcu = comjson.temperature;
-    humidity_mcu = comjson.humidity;  
+    	temperature_mcu = comjson.temperature;
+    	humidity_mcu = comjson.humidity; 
+        }
+    catch(err){
+    	console.log("UART ERR :" + err);
+    	}
+    
     //console.log("JSON[temperature]=",temperature_mcu);
     //console.log("JSON[humidity]=",humidity_mcu);
         });

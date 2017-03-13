@@ -14,7 +14,7 @@ void setup() {
   Serial.begin(9600);
   Serial1.begin(57600);
   Serial.println("DHT11 test!");
-  Serial1.println("DHT11 test!");
+  //Serial1.println("DHT11 test!");
 
   dht.begin();
 }
@@ -46,10 +46,10 @@ void loop() {
         StaticJsonBuffer<200> jsonBuffer;
         
         JsonObject& root = jsonBuffer.createObject();
-        //root["temperature"] = String(t);
-        //root["humidity"] = String(h);
-        root["temperature"] = "22";
-        root["humidity"] = "19";
+        root["temperature"] = String(t);
+        root["humidity"] = String(h);
+        //root["temperature"] = "22"; //test
+        //root["humidity"] = "19";  //test
 
         root.printTo(Serial1);
         root.prettyPrintTo(Serial);
