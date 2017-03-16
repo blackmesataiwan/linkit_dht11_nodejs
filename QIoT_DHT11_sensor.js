@@ -1,9 +1,9 @@
 var mqtt = require('mqtt');
 var fs = require('fs');
 var http = require('http');
-// var rpio = require('rpio');
-// var sensorLib = require("node-dht-sensor");
+
 var Q = require('q');
+
 //declare the path which cert infos locates.
 var KEY = "";
 var CERT = "";
@@ -13,9 +13,8 @@ var fakevalue = 0;
 var temperature_mcu = 0;
 var humidity_mcu = 0;
 
-//var restype = "no";
+/**** linkit MPU to connect MCU ****/
 
-//linkit to contral mcu
 var comport = require("serialport");
 
 var serialPort = new comport.SerialPort("/dev/ttyS0", {
@@ -37,10 +36,11 @@ serialPort.on('data', function(data) {
     catch(err){
     	console.log("UART ERR :" + err);
     	}
-    
-    //console.log("JSON[temperature]=",temperature_mcu);
-    //console.log("JSON[humidity]=",humidity_mcu);
-        });
+    });
+
+
+/**** Connect QIoT Suite Lite ****/
+
 
 //declare mqtt server host & port infos
 PORT = 8883;
@@ -152,6 +152,8 @@ function getresourceinfo(fileName) {
         });
         return defer.promise;
 }
+
+// Send mqtt data
 
 var sensor = {
     read: function() {

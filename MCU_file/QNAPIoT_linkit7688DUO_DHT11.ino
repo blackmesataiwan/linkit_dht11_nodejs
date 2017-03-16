@@ -14,7 +14,6 @@ void setup() {
   Serial.begin(9600);
   Serial1.begin(57600);
   Serial.println("DHT11 test!");
-  //Serial1.println("DHT11 test!");
 
   dht.begin();
 }
@@ -35,12 +34,6 @@ void loop() {
 
   if (millis() - timer > 200) {
         timer = millis();
-        //Bridge.put("temperature", String(t));
-        //Serial1.println("temperature :" + String(t));
-        //Serial.println("temperature :" + String(t));
-        //Bridge.put("humidity", String(h));
-        //Serial1.println("humidity : " + String(h));
-        //Serial.println("humidity :" + String(h));
 
         //json
         StaticJsonBuffer<200> jsonBuffer;
@@ -48,13 +41,10 @@ void loop() {
         JsonObject& root = jsonBuffer.createObject();
         root["temperature"] = String(t);
         root["humidity"] = String(h);
-        //root["temperature"] = "22"; //test
-        //root["humidity"] = "19";  //test
 
         root.printTo(Serial1);
         root.prettyPrintTo(Serial);
         Serial1.print("\r\n");
-        // This prints:
-        // {"sensor":"gps","time":1351824120,"data":[48.756080,2.302038]}
+
             }
 }
