@@ -8,6 +8,7 @@
   "dependencies": {
       "socket.io":"latest",
       "mqtt":"latest",
-      "q":"latest"
+      "q":"latest",
+      "serialport":"latest"
   }
 }
